@@ -53,9 +53,9 @@ calibrate.at1p <- function(V0, cdsrate, r, t, ...){
     	sigma <- par[3 : length(par)]
 
     	intensity <- at1p(V0 = V0, H0 = H0, B = B, sigma = sigma, r = r, t = t)$Default.Intensity
-    	cdsrate <- cds(t = t, int = intensity, r = r, ...)$Rate
+    	rate <- cds(t = t, int = intensity, r = r, ...)$Rate
 
-  		err <- mean((cdsrate - cdsrate)^2)
+  		err <- mean((rate - cdsrate)^2)
     	return(err)
 	}
 

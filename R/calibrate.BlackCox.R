@@ -54,9 +54,9 @@ calibrate.BlackCox <- function(V0, cdsrate, r, t, ...){
     	  gamma <- par[4]
 
     		intensity <- BlackCox(L = L, K = K, V0 = V0, sigma = sigma, r = r, gamma = gamma, t = t)$Default.Intensity
-    	  cdsrate <- cds(t = t, int = intensity, r = r, ...)$Rate
+    	  rate <- cds(t = t, int = intensity, r = r, ...)$Rate
 
-    		err <- mean((cdsrate - cdsrate)^2)
+    		err <- mean((rate - cdsrate)^2)
     		return(err)
 	}
 

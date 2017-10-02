@@ -55,9 +55,9 @@ calibrate.sbtv <- function(V0, p, cdsrate, r, t, ...){
 		H <- par[(2 + length(t)) : length(par)]
 
 		intensity <- sbtv(V0 = V0, H = H, p = p, B = B, sigma = sigma, r = r, t = t)$Default.Intensity
-		cdsrate <- cds(t = t, int = intensity, r = r)$Rate
+		rate <- cds(t = t, int = intensity, r = r)$Rate
 
-		err <- mean((cdsrate - cdsrate)^2)
+		err <- mean((rate - cdsrate)^2)
 		return(err)
 	}
 

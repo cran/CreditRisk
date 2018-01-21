@@ -2,7 +2,7 @@ Package: CreditRisk
 Type: Package
 Title: Evaluation of Credit Risk with Structural and Reduced Form
         Models
-Version: 0.1.1
+Version: 0.1.3
 Date: 2017-09-01
 Author: Alessandro Cimarelli <alessandro.cimarelli@icloud.com> [anl, aut, cre]
 	       Nicolò Manca <n.manca1992@gmail.com> [anl, aut, cre]
@@ -15,6 +15,6 @@ Imports: fOptions, stats
 RoxygenNote: 6.0.1
 Suggests: testthat
 NeedsCompilation: no
-Packaged: 2017-10-02 10:50:25 UTC; amministratore
+Packaged: 2018-01-20 16:55:45 UTC; amministratore
 Repository: CRAN
-Date/Publication: 2017-10-02 10:54:16 UTC
+Date/Publication: 2018-01-21 17:10:42 UTC

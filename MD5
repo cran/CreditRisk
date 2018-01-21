@@ -1,4 +1,4 @@
-fea922e423f8e5fc38130dfe2339f344 *DESCRIPTION
+59cb9a3ec8aa8c03adbe5935c1b123ac *DESCRIPTION
 d3fc747d9c1f18b0f04c5838a0164918 *LICENSE
 9add0e18c62550738110cf028cbecb60 *NAMESPACE
 29f3c0a37156a55c96469eac4c5d7ee4 *R/BlackCox.R
@@ -10,7 +10,7 @@ fb7ad36f72b9b2392966834c5dc27106 *R/calibrate.BlackCox.R
 78521332e08e6f15dbff0e303d4387cb *R/calibrate.cds.R
 95c7a5e02da76a54757adc216671fcf5 *R/calibrate.sbtv.R
 446c1154c0e4e85927caf7bb5c570bed *R/cds.R
-42f2f803de6f835c83a04b7b7e1d91ce *R/cds2.R
+f0f90589a12e56e6b4098743f47dabd2 *R/cds2.R
 f3a565ef6512cdf623447275a4bea60b *R/cdsdata.R
 2630b53962b3cc6b56b004e9dc5a22c8 *R/sbtv.R
 5798a0f37517d29ea709521415afbb75 *data/cdsdata.RData
@@ -23,6 +23,6 @@ cd424524edf2d3334930d2e8dbc01fc1 *man/at1p.Rd
 014d182b5a9ce07b92ee2aa81d0f4d8a *man/calibrate.cds.Rd
 bc77ef570771d219f61ca529547a18ad *man/calibrate.sbtv.Rd
 4cb5ce5515e0f44a885a76f883c89a6f *man/cds.Rd
-90185ec9bdca62925c100e72c88ca65d *man/cds2.Rd
+5577adc6e858b1579279288d5164d258 *man/cds2.Rd
 ae09cbda026117185f24555f7a62f920 *man/cdsdata.Rd
 0cc97fa582288e95a5a50e45db65d15a *man/sbtv.Rd

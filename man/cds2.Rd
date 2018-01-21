@@ -36,11 +36,8 @@ and on discretization of \code{r} and \code{int}. In particular input \code{(t, 
 can be of different length thanks to the function \link[stats]{approx}.
 }
 \examples{
-cds2( t=seq(0.5, 30, by=0.5), T =c(5,10,30),
-tr = c(0.5, 1, 2, 3, 4, 5, 7, 10, 20, 30),
-       r=c(-0.275, -0.244, -0.169, -0.082,  0.020,
-       0.135,  0.389,  0.765,  1.366,  1.455), tint=c(1,2,5),
-       int=c(.01,.005,.003), R=0.005, simplified=TRUE )
+cds2(t = c(1:20),T = c(1:20), tr = c(1:20), r = seq(0.01,0.06, len =20),
+tint = c(1:20), int= seq(0.01,0.06, len =20))
 
 }
 \references{

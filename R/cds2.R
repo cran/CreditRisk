@@ -29,30 +29,36 @@
 #' With Pricing Cases for All Asset Classes
 #'
 #' @examples
-#' cds2( t=seq(0.5, 30, by=0.5), T =c(5,10,30),
-#' tr = c(0.5, 1, 2, 3, 4, 5, 7, 10, 20, 30),
-#'        r=c(-0.275, -0.244, -0.169, -0.082,  0.020,
-#'        0.135,  0.389,  0.765,  1.366,  1.455), tint=c(1,2,5),
-#'        int=c(.01,.005,.003), R=0.005, simplified=TRUE )
+#' cds2(t = c(1:20),T = c(1:20), tr = c(1:20), r = seq(0.01,0.06, len =20),
+#' tint = c(1:20), int= seq(0.01,0.06, len =20))
 #'
 #' @export
 #'
-cds2 <- function( t, T, tr, r, tint, int, R = 0.005, ... ){
+cds2 = function (t, T, tr, r, tint, int, R = 0.005, ...)
+{
+  if (!is.numeric(t))
+    stop("time t must be a numeric vector")
+  if (!is.numeric(int))
+    stop("intensity int must be a numeric vector")
+  if (!is.numeric(r))
+    stop("rates r must be a numeric vector")
 
-  if( !is.numeric(t) ) stop( "time t must be a numeric vector" )
-  if( !is.numeric(int) ) stop( "intensity int must be a numeric vector" )
-  if( !is.numeric(r) ) stop( "rates r must be a numeric vector" )
+  new.r <- stats::approx(x = tr, y = r, xout = t, method = "linear",
+                         rule = 2)$y
+  new.int <- stats::approx(x = tint, y = int, xout = t, method = "linear",
+                           rule = 2)$y
 
-  new.r <- stats::approx( x = tr, y = r, xout = t, method = "linear", rule= 2 )$y
-  new.int <- stats::approx( x = tint, y = int, xout = t, method = "linear", rule= 2 )$y
-  cds1<-cds( t = t, r = new.r, int = new.int, R = R, ... )
-
-  Q <- stats::approx( x = t, y = cds1$Q, xout = T, rule = 2 )$y
-  price <- stats::approx( x = t, y = cds1$Price, xout = T, rule = 2 )$y
-  premium <- stats::approx( x = t, y = cds1$PremiumLeg, xout = T, rule = 2 )$y
-  protection <- stats::approx( x = t, y = cds1$ProtectionLeg, xout = T, rule = 2 )$y
-
-  out<-data.frame(T = T, Q = Q, premium = premium, protection = protection, rate = R * protection / premium, price = price )
-  names(out)<-c("T", "Q", "PremiumLeg", "ProtectionLeg", "Rate", "Price")
+  cds1 <- cds(t = t, r = new.r, int = new.int, R = R, ...)
+  ##Output
+  Q <- stats::approx(x = t, y = cds1$Survival, xout = T, rule = 2)$y
+  price <- stats::approx(x = t, y = cds1$Price, xout = T, rule = 2)$y
+  premium <- stats::approx(x = t, y = cds1$PremiumLeg, xout = T,
+                           rule = 2)$y
+  protection <- stats::approx(x = t, y = cds1$ProtectionLeg,
+                              xout = T, rule = 2)$y
+  out <- data.frame(T = T, Q = Q, premium = premium, protection = protection,
+                    rate = R * protection/premium, price = price)
+  names(out) <- c("T", "Survival", "PremiumLeg", "ProtectionLeg",
+                  "Rate", "Price")
   return(out)
 }

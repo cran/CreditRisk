@@ -4,12 +4,12 @@
 \alias{cds2}
 \title{Calculate Credit Default Swap rates}
 \usage{
-cds2(t, T, tr, r, tint, int, R = 0.005, ...)
+cds2(t, Tj, tr, r, tint, int, R = 0.005, ...)
 }
 \arguments{
 \item{t}{premium timetable.}
 
-\item{T}{CDS maturities.}
+\item{Tj}{CDS maturities.}
 
 \item{tr}{interest rates timetable.}
 
@@ -25,7 +25,7 @@ cds2(t, T, tr, r, tint, int, R = 0.005, ...)
 }
 \value{
 An object of class \code{data.frame} that contains the quantities calculated by \code{cds}
-on T timetable.
+on Tj timetable.
 }
 \description{
 Calculate CDS rates starting from default intensities
@@ -36,7 +36,7 @@ and on discretization of \code{r} and \code{int}. In particular input \code{(t, 
 can be of different length thanks to the function \link[stats]{approx}.
 }
 \examples{
-cds2(t = c(1:20),T = c(1:20), tr = c(1:20), r = seq(0.01,0.06, len =20),
+cds2(t = c(1:20),Tj = c(1:20), tr = c(1:20), r = seq(0.01,0.06, len =20),
 tint = c(1:20), int= seq(0.01,0.06, len =20))
 
 }

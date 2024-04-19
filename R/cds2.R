@@ -4,7 +4,7 @@
 #' Calculate CDS rates starting from default intensities
 #'
 #' @param t premium timetable.
-#' @param T CDS maturities.
+#' @param Tj CDS maturities.
 #' @param tr interest rates timetable.
 #' @param int default intensities timetable.
 #' @param tint intensity timetable.
@@ -14,7 +14,7 @@
 #'
 #' @return
 #' An object of class \code{data.frame} that contains the quantities calculated by \code{cds}
-#' on T timetable.
+#' on Tj timetable.
 #'
 #' @details
 #' The function \code{cds2} is based on \code{cds} but allows a more fine controll on maturities
@@ -29,12 +29,12 @@
 #' With Pricing Cases for All Asset Classes
 #'
 #' @examples
-#' cds2(t = c(1:20),T = c(1:20), tr = c(1:20), r = seq(0.01,0.06, len =20),
+#' cds2(t = c(1:20),Tj = c(1:20), tr = c(1:20), r = seq(0.01,0.06, len =20),
 #' tint = c(1:20), int= seq(0.01,0.06, len =20))
 #'
 #' @export
 #'
-cds2 = function (t, T, tr, r, tint, int, R = 0.005, ...)
+cds2 = function (t, Tj, tr, r, tint, int, R = 0.005, ...)
 {
   if (!is.numeric(t))
     stop("time t must be a numeric vector")
@@ -50,15 +50,15 @@ cds2 = function (t, T, tr, r, tint, int, R = 0.005, ...)
 
   cds1 <- cds(t = t, r = new.r, int = new.int, R = R, ...)
   ##Output
-  Q <- stats::approx(x = t, y = cds1$Survival, xout = T, rule = 2)$y
-  price <- stats::approx(x = t, y = cds1$Price, xout = T, rule = 2)$y
-  premium <- stats::approx(x = t, y = cds1$PremiumLeg, xout = T,
+  Q <- stats::approx(x = t, y = cds1$Survival, xout = Tj, rule = 2)$y
+  price <- stats::approx(x = t, y = cds1$Price, xout = Tj, rule = 2)$y
+  premium <- stats::approx(x = t, y = cds1$PremiumLeg, xout = Tj,
                            rule = 2)$y
   protection <- stats::approx(x = t, y = cds1$ProtectionLeg,
-                              xout = T, rule = 2)$y
-  out <- data.frame(T = T, Q = Q, premium = premium, protection = protection,
+                              xout = Tj, rule = 2)$y
+  out <- data.frame(Tj = Tj, Q = Q, premium = premium, protection = protection,
                     rate = R * protection/premium, price = price)
-  names(out) <- c("T", "Survival", "PremiumLeg", "ProtectionLeg",
+  names(out) <- c("Tj", "Survival", "PremiumLeg", "ProtectionLeg",
                   "Rate", "Price")
   return(out)
 }

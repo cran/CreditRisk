@@ -4,7 +4,9 @@
 \name{cdsdata}
 \alias{cdsdata}
 \title{CDS quotes from market}
-\format{An object of class \code{"data.frame"}.}
+\format{
+An object of class \code{"data.frame"}.
+}
 \source{
 Thomson Reuters, CDS quotes of Unicredit on 2017-01-23
 }

@@ -4,14 +4,14 @@
 \alias{calibrate.cds}
 \title{Calibrate the default intensities to market CDS data}
 \usage{
-calibrate.cds(r, t, T, cdsrate, ...)
+calibrate.cds(r, t, Tj, cdsrate, ...)
 }
 \arguments{
 \item{r}{interest rates.}
 
 \item{t}{premiums timetable.}
 
-\item{T}{CDS maturities.}
+\item{Tj}{CDS maturities.}
 
 \item{cdsrate}{CDS rates from market.}
 
@@ -35,7 +35,7 @@ vector of intensities and return the mean error occurred estimating CDS rates wi
 }
 \examples{
 calibrate.cds( r = cdsdata$ED.Zero.Curve, t = seq(.5, 30, by = 0.5),
-               T = c(1, 2, 3, 4, 5, 7, 10, 20, 30), cdsrate = cdsdata$Par.spread, RR = 0.4)
+               Tj = c(1, 2, 3, 4, 5, 7, 10, 20, 30), cdsrate = cdsdata$Par.spread, RR = 0.4)
 
 }
 \references{

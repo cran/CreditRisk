@@ -51,10 +51,10 @@ plot(c(0.50, 1.00, 2.00, 5.00, 7.00, 10.00, 20.00, 30.00), mod$Ht, type = 'b',
      maturities', ylim = c(min(mod$Ht), 1.5), col = 'red')
 abline(h = 0.55, col = 'red')
 lines(c(0.50, 1.00, 2.00, 5.00, 7.00, 10.00, 20.00, 30.00), mod$Vt, xlab = 'Maturity',
-      ylab = 'V(t)', main = 'Value of the Firm \\n at time t', type = 's')
+      ylab = 'V(t)', main = 'Value of the Firm \n at time t', type = 's')
 
 plot(c(0.50, 1.00, 2.00, 5.00, 7.00, 10.00, 20.00, 30.00), mod$Survival, type = 'b',
-     main = 'Survival Probability for different Maturity \\n (Black & Cox model)',
+     main = 'Survival Probability for different Maturity \n (Black & Cox model)',
      xlab = 'Maturity', ylab = 'Survival Probability')
 
 matplot(c(0.50, 1.00, 2.00, 5.00, 7.00, 10.00, 20.00, 30.00), mod$Default.Intensity,

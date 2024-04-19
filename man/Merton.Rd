@@ -24,11 +24,11 @@ vector rapresents the debt maturity T.}
 \code{Merton} returns an object of class \code{data.frame} with:
 \itemize{
     \item \code{Vt}: expected Firm value at time \eqn{t < T} calculated by the simple formula
-    \eqn{V_t = V_0 * \exp^{r * t}}.
+    \eqn{V_t = V_0 * \exp(r t)}.
     \item \code{St}: firm equity value at each \eqn{t < T}. This value can be seen as a call
     option on the firm value \code{V_t}.
     \item \code{Dt}: firm debt value at each \eqn{t < T}.
-    \item \code{Survival}: surviaval probability for each maturity.
+    \item \code{Survival}: survival probability for each maturity.
 }
 }
 \description{
@@ -36,14 +36,14 @@ vector rapresents the debt maturity T.}
 each maturity according to the structural Merton's model.
 }
 \details{
-In Merton's model the default event can occur only at debt maturity T and not before.
+In Merton model the default event can occur only at debt maturity T and not before.
 In this model the debt face value \code{L} represents the constant safety
 level. In this model the firm value is the sum of the firm equity value \code{St} and
 ad the firm debt value \code{Dt}. The debt value at time \eqn{t < T} is calculated by the formula:
-\deqn{D_t = L * \exp^{- r * (T - t)} - Put(t, T; V_t, L)}
+\deqn{D_t = L * \exp(-r  (T - t)) - Put(t, T; V_t, L)}
 The equity value can be derived as a difference between the firm value and the debt:
-\deqn{S_t = V_t - D_t = V_t - L * \exp^{- r * (T - t)} + Put(t, T; V_t, L) = Call(t, T; V_t, L)}
-(by the put-call parity) so that in the Merton's model the equity can be interpreted as a
+\deqn{S_t = V_t - D_t = V_t - L * \exp(-r  (T - t)) + Put(t, T; V_t, L) = Call(t, T; V_t, L)}
+(by the put-call parity) so that in the Merton model the equity can be interpreted as a
 Call option on the value of the firm.
 }
 \examples{
@@ -52,7 +52,7 @@ mod <- Merton(L = 10, V0 = 20, sigma = 0.2, r = 0.005,
 mod
 
 plot(c(0.50, 1.00, 2.00, 3.25, 5.00, 10.00, 15.00, 20.00), mod$Surv,
-     main = 'Survival Probability for different Maturity \\n (Merton model)',
+     main = 'Survival Probability for different Maturity \n (Merton model)',
      xlab = 'Maturity', ylab = 'Survival Probability', type = 'b')
 }
 \references{

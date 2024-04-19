@@ -98,6 +98,7 @@ cds <- function(t, int, r, R = 0.005, RR = 0.4, simplified = FALSE){
 
 	out<-data.frame(t, Q, premium, protection, rate, price)
 	names(out) <- c("t","Survival","PremiumLeg","ProtectionLeg","Rate","Price")
-      return(out)
+      
+	return(out)
 
 }

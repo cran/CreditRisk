@@ -7,7 +7,7 @@
 #'
 #' @param r interest rates.
 #' @param t premiums timetable.
-#' @param T CDS maturities.
+#' @param Tj CDS maturities.
 #' @param cdsrate CDS rates from market.
 #' @param ... additional parameters used in \code{cds} function.
 #'
@@ -31,24 +31,24 @@
 #'
 #' @examples
 #' calibrate.cds( r = cdsdata$ED.Zero.Curve, t = seq(.5, 30, by = 0.5),
-#'                T = c(1, 2, 3, 4, 5, 7, 10, 20, 30), cdsrate = cdsdata$Par.spread, RR = 0.4)
+#'                Tj = c(1, 2, 3, 4, 5, 7, 10, 20, 30), cdsrate = cdsdata$Par.spread, RR = 0.4)
 #'
 #' @export
 #'
-calibrate.cds <- function( r, t, T, cdsrate, ...){
+calibrate.cds <- function( r, t, Tj, cdsrate, ...){
 
 	if( !is.numeric(r) ) stop( "interest rate r must be a numeric vector" )
 	if( !is.numeric(t) ) stop( "time t must be a numeric vector" )
 	if( !is.numeric(cdsrate) ) stop( "cdsrate must be a numeric vector" )
 
 	err.cds <- function(int){
-		new.int <- stats::approx( x = T, y = int, xout = t, method = "linear", rule = 2)$y
+		new.int <- stats::approx( x = Tj, y = int, xout = t, method = "linear", rule = 2)$y
 		cds1 <- cds(t = t, r = r, int = new.int, ...)$Rate
-		cds1 <- stats::approx( x = t, y = cds1, xout = T, rule = 2)$y
+		cds1 <- stats::approx( x = t, y = cds1, xout = Tj, rule = 2)$y
 		err <- mean((cds1 - cdsrate)^2)
 	}
 
-    int = rep(0.1, length(T));
+    int = rep(0.1, length(Tj));
 
 	out <- stats::optim( par = int, fn = err.cds,  lower = 0*t, control = list(maxit = 5000), method = "L-BFGS-B")
 	out <- list(out$par,out$value)
